@@ -131,9 +131,9 @@ return 0;
 
 int saveElect(struct Elector *elect){
     FILE *file;
-    file = fopen("Elector.txt",'w');
+    file = fopen("Elector.txt",'a');
     if(file==NULL){
-        printf("File Creation failed \n");
+        printf("Error we can't save the elector \n");
         return 1;
     }
     else{
@@ -143,6 +143,30 @@ int saveElect(struct Elector *elect){
     }
 }
 
+void vote(struct Candidate *candid_tab[numberOfCandidates],struct Elector *elect_tab[numberOfElectors]){
+    char *password;
+    int number;
+    int i=0;
+    bool isELector=0;
+    printf("PLease enter your password \n");
+    scanf("%s",password);
+    for(i=0;i<numberOfElectors;i++){
+        if(strcmp(password,elect_tab[i]->password)==0){
+            isELector=1;
+        }
+        else{
+            printf("Your are not registered as a elector!");
+        }
+    }
+    do{
+    printf("please enter your candidate's number \n");
+    scanf("%d",&number);
+    }
+    while(number>numberOfCandidates);
+    printf("Thanks for voting \n");
+    candid_tab[number]->numberOfVotes++;
+
+}
 
 /*Operations related to Candidates*/
 
@@ -186,4 +210,28 @@ int createCandidate(){
    candid->numberOfVotes=0;
    }
 return 0;
+}
+
+int saveCandidate(struct Candidate *candid){
+    FILE *file;
+    if(file==NULL){
+        printf("Error, we can't save the candidate");
+        return 1;
+    }
+    file=fopen("Candidates.txt",'a');
+    frintf(file,"lastName : %s   firstName: %s   age: %d  numberOfVotes: %s \n", candid->lastName,candid->firstName,candid->age,candid->numberOfVotes);
+    printf("Saving success");
+    fclose(file);
+    return 0;
+}
+
+
+void printCandidate(struct Candidate *tab[numberOfCandidates],int number){
+  printf("lastname : %s \n firstname: %s \n age: %d \n numberOfVotes: %d ",tab[number]->lastName,tab[number]->firstName,tab[number]->age, tab[number]->numberOfVotes);
+}
+
+/*Operations related to Election*/
+
+void createElection(){
+
 }

@@ -29,7 +29,7 @@ struct Elector{
 };
 
 
-struct ELection{
+struct Election{
     struct Administrator admin;
     struct Candidate candidates[numberOfCandidates];
     struct Elector electors[numberOfElectors];
