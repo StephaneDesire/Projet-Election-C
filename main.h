@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include "structures.c"
 
 int isString(char *chaine);
 int createAdminAccount();

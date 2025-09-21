@@ -66,7 +66,7 @@ return 0;
     
 }
 
-int saveAdmin(struct Administrator *admin){
+/*int saveAdmin(struct Administrator *admin){
     FILE *file;
     file = fopen("Administrator.txt",'w');
     if(file==NULL){
@@ -79,7 +79,7 @@ int saveAdmin(struct Administrator *admin){
         return 0;
     }
 }
-
+*/
 
 /*Operations related to Electors*/
 
@@ -125,6 +125,8 @@ int createElectorAccount(){
          scanf("%s",confirmation);
     }
    }
+   elect_tab[elector_position]=elect;
+   elector_position++;
 return 0;
     
 }
@@ -209,6 +211,7 @@ int createCandidate(){
    else{
    candid->numberOfVotes=0;
    }
+   candid_tab[candid->number]= candid;
 return 0;
 }
 
@@ -219,7 +222,7 @@ int saveCandidate(struct Candidate *candid){
         return 1;
     }
     file=fopen("Candidates.txt",'a');
-    frintf(file,"lastName : %s   firstName: %s   age: %d  numberOfVotes: %s \n", candid->lastName,candid->firstName,candid->age,candid->numberOfVotes);
+    fprintf(file,"lastName : %s   firstName: %s   age: %d  numberOfVotes: %s \n", candid->lastName,candid->firstName,candid->age,candid->numberOfVotes);
     printf("Saving success");
     fclose(file);
     return 0;
@@ -233,5 +236,18 @@ void printCandidate(struct Candidate *tab[numberOfCandidates],int number){
 /*Operations related to Election*/
 
 void createElection(){
+   printf("Welcome to the Election of the students's representation \n");
+   createAdminAccount();
+   int i=0;
+   int j=0;
+   for(i=0;i<numberOfCandidates;i++){
+    createCandidate();
+
+   }
+
+   for(j=0;j<numberOfElectors;j++){
+    createElectorAccount();
+   }
+
 
 }

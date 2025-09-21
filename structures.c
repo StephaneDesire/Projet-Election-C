@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-const int numberOfCandidates=5;
-const int numberOfElectors=100;
+const int numberOfCandidates=2;
+const int numberOfElectors=5;
+const struct Candidate *candid_tab[numberOfCandidates];
+const struct Elector *elect_tab[numberOfElectors];
+int elector_position=0;
 
 struct Administrator{
     char *firstName;
@@ -31,6 +34,6 @@ struct Elector{
 
 struct Election{
     struct Administrator admin;
-    struct Candidate candidates[numberOfCandidates];
-    struct Elector electors[numberOfElectors];
+    struct Candidate *candidates[numberOfCandidates];
+    struct Elector *electors[numberOfElectors];
 };
